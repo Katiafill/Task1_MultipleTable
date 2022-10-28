@@ -2,9 +2,9 @@ package katiafill.task1;
 
 public class PrintMultipleTable {
 
-    private final String verticalBorderSymbol = "|";
-    private final String cornerSymbol = "+";
-    private final String borderSymbol = "-";
+    private final static String verticalBorderSymbol = "|";
+    private final static String cornerSymbol = "+";
+    private final static String borderSymbol = "-";
     private final int size;
     private final int maxCellSize;
     private final int minCellSize;
