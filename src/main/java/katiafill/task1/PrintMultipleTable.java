@@ -2,10 +2,8 @@ package katiafill.task1;
 
 public class PrintMultipleTable {
 
-    private final String verticalBorder = "|";
-    private final String corner = "+";
-    private final String space = " ";
-    private final String newLineString = System.lineSeparator();
+    private final String verticalBorderSymbol = "|";
+    private final String cornerSymbol = "+";
     private final String borderSymbol = "-";
     private final int size;
     private final int maxCellSize;
@@ -23,20 +21,12 @@ public class PrintMultipleTable {
 
         for (int row = 0; row <= size; row++) {
             builder.append(stringRow(row));
-            builder.append(newLineString);
+            builder.append(System.lineSeparator());
             builder.append(horizontalBorder());
-            builder.append(newLineString);
+            builder.append(System.lineSeparator());
         }
 
         return builder.toString();
-    }
-
-    protected String verticalBorder() {
-        return space + verticalBorder + space;
-    }
-
-    protected String corner() {
-        return space + corner + space;
     }
 
     protected String stringRow(int row) {
@@ -44,7 +34,7 @@ public class PrintMultipleTable {
 
         stringRow.append(stringCellForValue(row, minCellSize));
         for (int col = 1; col <= size; col++) {
-            stringRow.append(verticalBorder());
+            stringRow.append(verticalBorderSymbol);
             int nRow = row == 0 ? 1 : row;
             stringRow.append(stringCellForValue(col * nRow, maxCellSize));
         }
@@ -57,10 +47,9 @@ public class PrintMultipleTable {
 
         border.append(stringBorderForSize(minCellSize));
 
-        String corner = corner();
         String cellBorder = stringBorderForSize(maxCellSize);
         for (int i = 0; i < size; i++) {
-            border.append(corner);
+            border.append(cornerSymbol);
             border.append(cellBorder);
         }
 
@@ -68,32 +57,27 @@ public class PrintMultipleTable {
     }
 
     protected String stringBorderForSize(int size) {
-        StringBuilder border = new StringBuilder(size * 2);
+        StringBuilder border = new StringBuilder(size);
 
-        border.append(borderSymbol);
-        size--;
-        while (size > 0) {
-            border.append(space);
+        do {
             border.append(borderSymbol);
             size--;
-        }
+        } while (size > 0);
 
         return border.toString();
     }
 
     protected String stringCellForValue(int value, int maxSize) {
-        StringBuilder stringCell = new StringBuilder(maxSize * 2);
+        StringBuilder stringCell = new StringBuilder(maxSize);
 
-        for (int i = maxSize * 2 - 1; i > 0; i--) {
+        for (int i = maxSize; i > 0; i--) {
             if (value > 0) {
                 int digit = value % 10;
                 value /= 10;
                 stringCell.append(digit);
-                i--;
+                continue;
             }
-            if (i > 0) {
-                stringCell.append(space);
-            }
+            stringCell.append(" ");
         }
 
         stringCell.reverse();
@@ -110,7 +94,6 @@ public class PrintMultipleTable {
         return numberOfDigitsForValue(maxValue);
     }
 
-    // TODO: Вынести в отдельный класс
     protected int numberOfDigitsForValue(int value) {
         int size = 1;
         while (value >= 10) {
@@ -123,6 +106,5 @@ public class PrintMultipleTable {
     protected int getMaxValue() {
         return size * size;
     }
-
 
 }

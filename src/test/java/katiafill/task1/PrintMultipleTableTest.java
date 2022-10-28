@@ -33,61 +33,65 @@ class PrintMultipleTableTest {
     void testCellStrings() {
         PrintMultipleTable table = new PrintMultipleTable(5);
         String cell = table.stringCellForValue(1, 2);
-        assertEquals(cell, "  1");
+        assertEquals(cell, " 1");
 
-        cell = table.stringCellForValue(25, 2);
-        assertEquals(cell, "2 5");
+        cell = table.stringCellForValue(25, 3);
+        assertEquals(cell, " 25");
 
         cell = table.stringCellForValue(1,1);
         assertEquals(cell, "1");
 
         cell = table.stringCellForValue(100, 3);
-        assertEquals(cell, "1 0 0");
+        assertEquals(cell, "100");
     }
 
     @Test
     void testCellBorder() {
         PrintMultipleTable table = new PrintMultipleTable(5);
         String border = table.stringBorderForSize(2);
-        assertEquals(border, "- -");
+        assertEquals(border, "--");
     }
 
     @Test
     void testHorizontalBorder() {
         PrintMultipleTable table = new PrintMultipleTable(5);
         String border = table.horizontalBorder();
-        assertEquals(border, "- + - - + - - + - - + - - + - -");
+        assertEquals(border, "-+--+--+--+--+--");
     }
 
     @Test
     void testPrint2x2() {
         PrintMultipleTable table = new PrintMultipleTable(2);
         String result = table.toString();
+
+        String newLine = System.lineSeparator();
         assertEquals(result,
-                "  | 1 | 2\n" +
-                        "- + - + -\n" +
-                        "1 | 1 | 2\n" +
-                        "- + - + -\n" +
-                        "2 | 2 | 4\n" +
-                        "- + - + -\n");
+                " |1|2" + newLine +
+                        "-+-+-" + newLine +
+                        "1|1|2" + newLine +
+                        "-+-+-" + newLine +
+                        "2|2|4" + newLine +
+                        "-+-+-" + newLine);
     }
 
     @Test
     void testPrint5x5() {
         PrintMultipleTable table = new PrintMultipleTable(5);
         String result = table.toString();
+
+        String newLine = System.lineSeparator();
         assertEquals(result,
-                "  |   1 |   2 |   3 |   4 |   5\n" +
-                        "- + - - + - - + - - + - - + - -\n" +
-                        "1 |   1 |   2 |   3 |   4 |   5\n" +
-                        "- + - - + - - + - - + - - + - -\n" +
-                        "2 |   2 |   4 |   6 |   8 | 1 0\n" +
-                        "- + - - + - - + - - + - - + - -\n" +
-                        "3 |   3 |   6 |   9 | 1 2 | 1 5\n" +
-                        "- + - - + - - + - - + - - + - -\n" +
-                        "4 |   4 |   8 | 1 2 | 1 6 | 2 0\n" +
-                        "- + - - + - - + - - + - - + - -\n" +
-                        "5 |   5 | 1 0 | 1 5 | 2 0 | 2 5\n" +
-                        "- + - - + - - + - - + - - + - -\n");
+                " | 1| 2| 3| 4| 5" + newLine +
+                        "-+--+--+--+--+--" + newLine +
+                        "1| 1| 2| 3| 4| 5" + newLine +
+                        "-+--+--+--+--+--" + newLine +
+                        "2| 2| 4| 6| 8|10" + newLine +
+                        "-+--+--+--+--+--" + newLine +
+                        "3| 3| 6| 9|12|15" + newLine +
+                        "-+--+--+--+--+--" + newLine +
+                        "4| 4| 8|12|16|20" + newLine +
+                        "-+--+--+--+--+--" + newLine +
+                        "5| 5|10|15|20|25" + newLine +
+                        "-+--+--+--+--+--" + newLine);
     }
 }
