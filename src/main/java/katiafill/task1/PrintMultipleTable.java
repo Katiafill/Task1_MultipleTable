@@ -2,6 +2,11 @@ package katiafill.task1;
 
 public class PrintMultipleTable {
 
+    private final String verticalBorder = "|";
+    private final String corner = "+";
+    private final String space = " ";
+    private final String newLineString = System.lineSeparator();
+    private final String borderSymbol = "-";
     private final int size;
     private final int maxCellSize;
     private final int minCellSize;
@@ -18,20 +23,20 @@ public class PrintMultipleTable {
 
         for (int row = 0; row <= size; row++) {
             builder.append(stringRow(row));
-            builder.append("\n");
+            builder.append(newLineString);
             builder.append(horizontalBorder());
-            builder.append("\n");
+            builder.append(newLineString);
         }
 
         return builder.toString();
     }
 
     protected String verticalBorder() {
-        return " | ";
+        return space + verticalBorder + space;
     }
 
     protected String corner() {
-        return " + ";
+        return space + corner + space;
     }
 
     protected String stringRow(int row) {
@@ -65,11 +70,11 @@ public class PrintMultipleTable {
     protected String stringBorderForSize(int size) {
         StringBuilder border = new StringBuilder(size * 2);
 
-        border.append("-");
+        border.append(borderSymbol);
         size--;
         while (size > 0) {
-            border.append(" ");
-            border.append("-");
+            border.append(space);
+            border.append(borderSymbol);
             size--;
         }
 
@@ -87,7 +92,7 @@ public class PrintMultipleTable {
                 i--;
             }
             if (i > 0) {
-                stringCell.append(" ");
+                stringCell.append(space);
             }
         }
 
