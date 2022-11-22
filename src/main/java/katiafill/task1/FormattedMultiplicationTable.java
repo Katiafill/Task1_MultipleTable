@@ -2,9 +2,10 @@ package katiafill.task1;
 
 public class FormattedMultiplicationTable {
 
-    private final static String verticalBorderSymbol = "|";
-    private final static String cornerSymbol = "+";
-    private final static String borderSymbol = "-";
+    private final static String VERTICAL_BORDER_SYMBOL = "|";
+    private final static String CORNER_SYMBOL = "+";
+    private final static String BORDER_SYMBOL = "-";
+
     private final int size;
     private final int maxCellSize;
     private final int minCellSize;
@@ -34,7 +35,7 @@ public class FormattedMultiplicationTable {
 
         stringRow.append(stringCellForValue(row, minCellSize));
         for (int col = 1; col <= size; col++) {
-            stringRow.append(verticalBorderSymbol);
+            stringRow.append(VERTICAL_BORDER_SYMBOL);
             int nRow = row == 0 ? 1 : row;
             stringRow.append(stringCellForValue(col * nRow, maxCellSize));
         }
@@ -49,7 +50,7 @@ public class FormattedMultiplicationTable {
 
         String cellBorder = stringBorderForSize(maxCellSize);
         for (int i = 0; i < size; i++) {
-            border.append(cornerSymbol);
+            border.append(CORNER_SYMBOL);
             border.append(cellBorder);
         }
 
@@ -60,7 +61,7 @@ public class FormattedMultiplicationTable {
         StringBuilder border = new StringBuilder(size);
 
         do {
-            border.append(borderSymbol);
+            border.append(BORDER_SYMBOL);
             size--;
         } while (size > 0);
 
