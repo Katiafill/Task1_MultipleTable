@@ -12,18 +12,17 @@ public class FormattedMultiplicationTable {
 
     public FormattedMultiplicationTable(int size) {
         this.size = size;
-        maxCellSize = getMaxCellSize();
-        minCellSize = getMinCellSize();
+        maxCellSize = maxCellSize();
+        minCellSize = minCellSize();
     }
 
-    @Override
-    public String toString() {
+    public String formattedTable() {
         StringBuilder builder = new StringBuilder();
 
         String horizontalBorder = horizontalBorder();
         String lineSeparator = System.lineSeparator();
         for (int row = 0; row <= size; row++) {
-            builder.append(stringRow(row));
+            builder.append(tableRow(row));
             builder.append(lineSeparator);
             builder.append(horizontalBorder);
             builder.append(lineSeparator);
@@ -32,14 +31,14 @@ public class FormattedMultiplicationTable {
         return builder.toString();
     }
 
-    protected String stringRow(int row) {
+    protected String tableRow(int row) {
         StringBuilder stringRow = new StringBuilder();
 
-        stringRow.append(stringCellForValue(row, minCellSize));
+        stringRow.append(cellValue(row, minCellSize));
         for (int col = 1; col <= size; col++) {
             stringRow.append(VERTICAL_BORDER_SYMBOL);
             int nRow = row == 0 ? 1 : row;
-            stringRow.append(stringCellForValue(col * nRow, maxCellSize));
+            stringRow.append(cellValue(col * nRow, maxCellSize));
         }
 
         return stringRow.toString();
@@ -48,9 +47,9 @@ public class FormattedMultiplicationTable {
     protected String horizontalBorder() {
         StringBuilder border = new StringBuilder((maxCellSize + 2) * size);
 
-        border.append(stringBorderForSize(minCellSize));
+        border.append(cellBorder(minCellSize));
 
-        String cellBorder = stringBorderForSize(maxCellSize);
+        String cellBorder = cellBorder(maxCellSize);
         for (int i = 0; i < size; i++) {
             border.append(CORNER_SYMBOL);
             border.append(cellBorder);
@@ -59,11 +58,11 @@ public class FormattedMultiplicationTable {
         return border.toString();
     }
 
-    protected String stringBorderForSize(int size) {
+    protected String cellBorder(int size) {
         return BORDER_SYMBOL.repeat(size);
     }
 
-    protected String stringCellForValue(int value, int maxSize) {
+    protected String cellValue(int value, int maxSize) {
         StringBuilder stringCell = new StringBuilder(maxSize);
 
         if (value > 0) {
@@ -79,20 +78,15 @@ public class FormattedMultiplicationTable {
         return stringCell.toString();
     }
 
-    protected int getMinCellSize() {
+    protected int minCellSize() {
         return numberOfDigitsForValue(size);
     }
 
-    protected int getMaxCellSize() {
-        int maxValue = getMaxValue();
-        return numberOfDigitsForValue(maxValue);
+    protected int maxCellSize() {
+        return numberOfDigitsForValue(size * size);
     }
 
     protected int numberOfDigitsForValue(int value) {
         return Integer.toString(value).length();
-    }
-
-    protected int getMaxValue() {
-        return size * size;
     }
 }

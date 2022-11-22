@@ -7,13 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class FormattedMultiplicationTableTest {
 
     @Test
-    void getMaxValue() {
-        FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
-        int value = table.getMaxValue();
-        assertEquals(value, 25);
-    }
-
-    @Test
     void testNumberOfDigits() {
         FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
         int digits = table.numberOfDigitsForValue(6);
@@ -25,30 +18,30 @@ class FormattedMultiplicationTableTest {
     @Test
     void getMaxCellSize() {
         FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
-        int cellSize = table.getMaxCellSize();
+        int cellSize = table.maxCellSize();
         assertEquals(cellSize, 2);
     }
 
     @Test
     void testCellStrings() {
         FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
-        String cell = table.stringCellForValue(1, 2);
+        String cell = table.cellValue(1, 2);
         assertEquals(cell, " 1");
 
-        cell = table.stringCellForValue(25, 3);
+        cell = table.cellValue(25, 3);
         assertEquals(cell, " 25");
 
-        cell = table.stringCellForValue(1,1);
+        cell = table.cellValue(1,1);
         assertEquals(cell, "1");
 
-        cell = table.stringCellForValue(100, 3);
+        cell = table.cellValue(100, 3);
         assertEquals(cell, "100");
     }
 
     @Test
     void testCellBorder() {
         FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
-        String border = table.stringBorderForSize(2);
+        String border = table.cellBorder(2);
         assertEquals(border, "--");
     }
 
@@ -62,7 +55,7 @@ class FormattedMultiplicationTableTest {
     @Test
     void testPrint2x2() {
         FormattedMultiplicationTable table = new FormattedMultiplicationTable(2);
-        String result = table.toString();
+        String result = table.formattedTable();
 
         String newLine = System.lineSeparator();
         assertEquals(result,
@@ -77,7 +70,7 @@ class FormattedMultiplicationTableTest {
     @Test
     void testPrint5x5() {
         FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
-        String result = table.toString();
+        String result = table.formattedTable();
 
         String newLine = System.lineSeparator();
         assertEquals(result,
