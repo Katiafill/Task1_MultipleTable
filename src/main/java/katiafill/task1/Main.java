@@ -12,7 +12,7 @@ public class Main {
             size = scanner.nextInt();
         } while (size < 0 || size > 32);
 
-        PrintMultipleTable table = new PrintMultipleTable(size);
+        FormattedMultiplicationTable table = new FormattedMultiplicationTable(size);
         System.out.println(table);
     }
 }

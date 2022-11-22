@@ -1,6 +1,6 @@
 package katiafill.task1;
 
-public class PrintMultipleTable {
+public class FormattedMultiplicationTable {
 
     private final static String verticalBorderSymbol = "|";
     private final static String cornerSymbol = "+";
@@ -9,7 +9,7 @@ public class PrintMultipleTable {
     private final int maxCellSize;
     private final int minCellSize;
 
-    public PrintMultipleTable(int size) {
+    public FormattedMultiplicationTable(int size) {
         this.size = size;
         maxCellSize = getMaxCellSize();
         minCellSize = getMinCellSize();
@@ -106,5 +106,4 @@ public class PrintMultipleTable {
     protected int getMaxValue() {
         return size * size;
     }
-
 }

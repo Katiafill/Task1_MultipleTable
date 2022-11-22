@@ -4,18 +4,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PrintMultipleTableTest {
+class FormattedMultiplicationTableTest {
 
     @Test
     void getMaxValue() {
-        PrintMultipleTable table = new PrintMultipleTable(5);
+        FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
         int value = table.getMaxValue();
         assertEquals(value, 25);
     }
 
     @Test
     void testNumberOfDigits() {
-        PrintMultipleTable table = new PrintMultipleTable(5);
+        FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
         int digits = table.numberOfDigitsForValue(6);
         assertEquals(digits, 1);
         digits = table.numberOfDigitsForValue(32*32);
@@ -24,14 +24,14 @@ class PrintMultipleTableTest {
 
     @Test
     void getMaxCellSize() {
-        PrintMultipleTable table = new PrintMultipleTable(5);
+        FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
         int cellSize = table.getMaxCellSize();
         assertEquals(cellSize, 2);
     }
 
     @Test
     void testCellStrings() {
-        PrintMultipleTable table = new PrintMultipleTable(5);
+        FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
         String cell = table.stringCellForValue(1, 2);
         assertEquals(cell, " 1");
 
@@ -47,21 +47,21 @@ class PrintMultipleTableTest {
 
     @Test
     void testCellBorder() {
-        PrintMultipleTable table = new PrintMultipleTable(5);
+        FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
         String border = table.stringBorderForSize(2);
         assertEquals(border, "--");
     }
 
     @Test
     void testHorizontalBorder() {
-        PrintMultipleTable table = new PrintMultipleTable(5);
+        FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
         String border = table.horizontalBorder();
         assertEquals(border, "-+--+--+--+--+--");
     }
 
     @Test
     void testPrint2x2() {
-        PrintMultipleTable table = new PrintMultipleTable(2);
+        FormattedMultiplicationTable table = new FormattedMultiplicationTable(2);
         String result = table.toString();
 
         String newLine = System.lineSeparator();
@@ -76,7 +76,7 @@ class PrintMultipleTableTest {
 
     @Test
     void testPrint5x5() {
-        PrintMultipleTable table = new PrintMultipleTable(5);
+        FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
         String result = table.toString();
 
         String newLine = System.lineSeparator();
