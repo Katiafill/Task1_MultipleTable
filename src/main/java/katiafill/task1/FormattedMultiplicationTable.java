@@ -21,11 +21,12 @@ public class FormattedMultiplicationTable {
         StringBuilder builder = new StringBuilder();
 
         String horizontalBorder = horizontalBorder();
+        String lineSeparator = System.lineSeparator();
         for (int row = 0; row <= size; row++) {
             builder.append(stringRow(row));
-            builder.append(System.lineSeparator());
+            builder.append(lineSeparator);
             builder.append(horizontalBorder);
-            builder.append(System.lineSeparator());
+            builder.append(lineSeparator);
         }
 
         return builder.toString();
@@ -45,7 +46,7 @@ public class FormattedMultiplicationTable {
     }
 
     protected String horizontalBorder() {
-        StringBuilder border = new StringBuilder(maxCellSize * 2 * size);
+        StringBuilder border = new StringBuilder((maxCellSize + 2) * size);
 
         border.append(stringBorderForSize(minCellSize));
 
@@ -59,36 +60,27 @@ public class FormattedMultiplicationTable {
     }
 
     protected String stringBorderForSize(int size) {
-        StringBuilder border = new StringBuilder(size);
-
-        do {
-            border.append(BORDER_SYMBOL);
-            size--;
-        } while (size > 0);
-
-        return border.toString();
+        return BORDER_SYMBOL.repeat(size);
     }
 
     protected String stringCellForValue(int value, int maxSize) {
         StringBuilder stringCell = new StringBuilder(maxSize);
 
-        for (int i = maxSize; i > 0; i--) {
-            if (value > 0) {
-                int digit = value % 10;
-                value /= 10;
-                stringCell.append(digit);
-                continue;
-            }
-            stringCell.append(" ");
+        if (value > 0) {
+            stringCell.append(value);
         }
 
-        stringCell.reverse();
+        int spaceCount = maxSize - stringCell.length();
+        if (spaceCount > 0) {
+            String spaces = " ".repeat(spaceCount);
+            stringCell.insert(0, spaces);
+        }
+
         return stringCell.toString();
     }
 
     protected int getMinCellSize() {
-        int minValue = size;
-        return  numberOfDigitsForValue(minValue);
+        return numberOfDigitsForValue(size);
     }
 
     protected int getMaxCellSize() {
@@ -97,12 +89,7 @@ public class FormattedMultiplicationTable {
     }
 
     protected int numberOfDigitsForValue(int value) {
-        int size = 1;
-        while (value >= 10) {
-            value /= 10;
-            size++;
-        }
-        return size;
+        return Integer.toString(value).length();
     }
 
     protected int getMaxValue() {
