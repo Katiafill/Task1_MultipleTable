@@ -20,10 +20,11 @@ public class FormattedMultiplicationTable {
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
+        String horizontalBorder = horizontalBorder();
         for (int row = 0; row <= size; row++) {
             builder.append(stringRow(row));
             builder.append(System.lineSeparator());
-            builder.append(horizontalBorder());
+            builder.append(horizontalBorder);
             builder.append(System.lineSeparator());
         }
 
