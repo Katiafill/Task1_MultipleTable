@@ -23,6 +23,13 @@ class FormattedMultiplicationTableTest {
     }
 
     @Test
+    void minCellSize() {
+        FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
+        int cellSize = table.minCellSize();
+        assertEquals(cellSize, 1);
+    }
+
+    @Test
     void testCellStrings() {
         FormattedMultiplicationTable table = new FormattedMultiplicationTable(5);
         String cell = table.cellValue(1, 2);
