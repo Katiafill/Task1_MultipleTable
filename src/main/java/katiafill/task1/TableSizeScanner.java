@@ -3,7 +3,8 @@ package katiafill.task1;
 import java.util.Scanner;
 
 public class TableSizeScanner {
-    private Scanner scanner = new Scanner(System.in);
+    private static final int MAX_SIZE = 32;
+    private final Scanner scanner = new Scanner(System.in);
 
     public int getTableSize() {
         int size;
@@ -24,9 +25,9 @@ public class TableSizeScanner {
     }
 
     private void checkSizeValue(int size) {
-        if (size > 0 && size <= 32){
+        if (size > 0 && size <= MAX_SIZE){
             return;
         }
-        throw new IllegalArgumentException("Incorrect size " + size + ", size should be from 1 to 32.");
+        throw new IllegalArgumentException("Incorrect size " + size + ", size should be from 1 to " + MAX_SIZE + ".");
     }
 }
